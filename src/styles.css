@@ -6,7 +6,3 @@
 @theme {
   --font-sans: "Poppins", sans-serif;
 }
-
-body {
-  @font-sans;
-}
