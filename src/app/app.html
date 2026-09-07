@@ -1,7 +1,8 @@
-<main class="flex h-screen w-screen bg-gray-100">
+<main class="flex items-stretch h-screen w-screen bg-gray-100">
   <app-sidebar></app-sidebar>
 
-  <section>
+  <section class="flex-1">
+    <app-top-nav></app-top-nav>
     <router-outlet></router-outlet>
   </section>
 </main>

@@ -4,5 +4,9 @@
 @import "tailwindcss";
 
 @theme {
-  --font-family-sans: "Poppins", sans-serif;
+  --font-sans: "Poppins", sans-serif;
+}
+
+body {
+  @font-sans;
 }
