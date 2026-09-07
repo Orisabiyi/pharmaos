@@ -37,5 +37,19 @@
         </button>
       </div>
     </div>
+
+    <ul class="font-poppins font-regular text-xl">
+      @for (list of dashboardList; track list.name) {
+      <li>
+        <a
+          [routerLink]="list.path"
+          class="flex items-center gap-3 py-3 px-18 text-white cursor-pointer hover:bg-[#009099] transition-colors duration-300">
+          <ng-icon name="{{ list.icon }}" size="1.7rem" />
+          <span>{{ list.name }}</span>
+        </a>
+      </li>
+
+      }
+    </ul>
   </section>
 </aside>

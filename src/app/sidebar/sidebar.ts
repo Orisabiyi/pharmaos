@@ -1,21 +1,23 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { NgIcon, provideIcons } from "@ng-icons/core";
 import { lucideMoreVertical } from "@ng-icons/lucide";
+import { remixLayout2Line } from '@ng-icons/remixicon';
 import { DashboardList } from "../dashboard-list";
+import { RouterModule } from "@angular/router";
 
 @Component({
-  imports: [NgIcon],
-  providers: [provideIcons({ lucideMoreVertical })],
+  imports: [NgIcon, RouterModule],
+  providers: [provideIcons({ lucideMoreVertical, remixLayout2Line })],
   selector: "app-sidebar",
   styleUrl: "./sidebar.css",
   templateUrl: "./sidebar.html",
 })
 export class Sidebar {
-  dashboardList: DashboardList[] = [
+  @Input() dashboardList: DashboardList[] = [
     {
       name: "Dashboard",
-      icon: "lucideHome",
-      path: "/dashboard"
+      icon: "remixLayout2Line",
+      path: ""
     }
   ]
 }
