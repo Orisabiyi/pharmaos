@@ -1,40 +1,61 @@
-<section class="px-16 py-10 2xl:px-32 font-sans">
-  <div class="flex items-center justify-between">
-    <div>
-      <h2 class="text-2xl font-medium leading-none">Dashboard</h2>
-      <p class="text-gray-600 text-sm mt-2">
-        A quick data overview of the inventory.
-      </p>
+<section class="font-sans flex flex-col items-stretch w-full h-full">
+  <div class="bg-gray-200 px-16 py-10 2xl:px-32">
+    <div class="flex items-center justify-between">
+      <div>
+        <h2 class="text-2xl font-medium leading-none">Dashboard</h2>
+        <p class="text-gray-600 text-sm mt-2">
+          A quick data overview of the inventory.
+        </p>
+      </div>
+
+      <button
+        class="bg-white border border-gray-300 rounded-lg p-4 w-64 text-gray-700 font-light flex items-center justify-between">
+        <span>Download Report</span>
+        <ng-icon name="remixArrowDropDownLine" size="1.5rem" />
+      </button>
     </div>
 
-    <button
-      class="bg-white border border-gray-300 rounded-lg p-4 w-64 text-gray-700 font-light flex items-center justify-between">
-      <span>Download Report</span>
-      <ng-icon name="remixArrowDropDownLine" size="1.5rem" />
-    </button>
+    <ul class="flex items-center gap-4 mt-8 w-full">
+      @for (list of inventoryListAndStats; track list.title) {
+      <li
+        class="flex-1 border-2 rounded-lg pt-4 bg-gray-100"
+        [class]="list.border">
+        <div class="flex flex-col items-center space-y-1">
+          <figure class="w-12 h-12 flex items-center justify-center">
+            <img
+              src="{{ list.cardIcon }}"
+              alt="Card Icon"
+              class="w-full h-full" />
+          </figure>
+
+          <h3 class="text-xl font-semibold">{{ list.title }}</h3>
+          <p class="font-medium text-base">{{ list.subTitle }}</p>
+        </div>
+        <div
+          [class]="[list.color, list.border]"
+          class="mt-4 rounded-b-md border-t">
+          <button
+            class="w-full text-xs font-light py-2.5 flex items-center justify-center gap-2">
+            <span>{{ list.titleLable }}</span>
+            <ng-icon
+              name="phosphorCaretDoubleDownThin"
+              size="1rem"
+              class="-rotate-90 font-bold" />
+          </button>
+        </div>
+      </li>
+      }
+    </ul>
   </div>
 
-  <ul class="flex items-center gap-4 mt-8 w-full">
-    <!-- <li></li> -->
-    @for (list of inventoryListAndStats; track list.title) {
-    <li class="flex-1 border-2 rounded-lg pt-4" [class]="list.border">
-      <div class="flex flex-col items-center space-y-1">
-        <figure class="w-12 h-12 flex items-center justify-center">
-          <img
-            src="{{ list.cardIcon }}"
-            alt="Card Icon"
-            class="w-full h-full" />
-        </figure>
-
-        <h3 class="text-xl font-semibold">{{ list.title }}</h3>
-        <p class="font-medium text-base">{{ list.subTitle }}</p>
-      </div>
-      <div [class]="list.color" class="mt-4 rounded-b-md">
-        <button class="w-full text-xs font-light py-2.5">
-          {{ list.titleLable }}
-        </button>
-      </div>
-    </li>
-    }
-  </ul>
+  <div class="flex-1 px-16 py-10 2xl:px-32 bg-white">
+    <div class="grid grid-cols-2 items-center justify-center gap-12 my-auto">
+      @for (cardList of inventoryCardList; track cardList.title +
+      cardList.bodyTitle1) {
+      <app-inventory-card
+        class="block"
+        [inventoryCard]="cardList"></app-inventory-card>
+      }
+    </div>
+  </div>
 </section>

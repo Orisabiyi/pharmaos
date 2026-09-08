@@ -1,23 +1,34 @@
 import { Component } from "@angular/core";
 import { NgIcon, provideIcons } from "@ng-icons/core";
 import { remixArrowDropDownLine } from '@ng-icons/remixicon';
+import { phosphorCaretDoubleDownThin } from '@ng-icons/phosphor-icons/thin';
+import { InventoryCardList, InventoryListAndStats } from "../inventory-list-and-stats";
+import { InventoryCard } from "../inventory-card/inventory-card";
 
 @Component({
-  imports: [NgIcon],
-  providers: [provideIcons({ remixArrowDropDownLine })],
+  imports: [InventoryCard, NgIcon],
+  providers: [provideIcons({ remixArrowDropDownLine, phosphorCaretDoubleDownThin })],
   selector: "app-home",
   styleUrl: "./home.css",
   templateUrl: "./home.html",
 })
 export class Home {
-  inventoryListAndStats = [
+  inventoryListAndStats: InventoryListAndStats[] = [
     {
       cardIcon: "/card-img-1.svg",
       title: "Good",
       subTitle: "Inventory Status",
       titleLable: "View Detailed Report",
       color: "bg-green-600/30",
-      border: "border-green-600/30"
+      border: "border-green-600"
+    },
+    {
+      cardIcon: "/card-img-2-money.svg",
+      title: "Rs. 8,55,875",
+      subTitle: "Medicines Available",
+      titleLable: "Visit Inventory",
+      color: "bg-yellow-600/30",
+      border: "border-yellow-600"
     },
     {
       cardIcon: "/card-img-3-medicine.svg",
@@ -25,7 +36,7 @@ export class Home {
       subTitle: "Medicines Available",
       titleLable: "Visit Inventory",
       color: "bg-blue-600/30",
-      border: "border-blue-600/30"
+      border: "border-blue-600"
     },
     {
       cardIcon: "/card-img-4-caution.svg",
@@ -33,7 +44,42 @@ export class Home {
       subTitle: "Medicine Storage",
       titleLable: "Resolve Now",
       color: "bg-red-600/30",
-      border: "border-red-600/30"
+      border: "border-red-600"
+    }
+  ]
+
+  inventoryCardList: InventoryCardList[] = [
+    {
+      title: "Inventory",
+      title2: "Go to Configuration",
+      bodyTitle1: "298",
+      bodyContent1: "Total no of Medicines",
+      bodyTitle2: "24",
+      bodyContent2: "Medicine Groups"
+    },
+    {
+      title: "Quick Report",
+      title2: "Go to Configuration",
+      bodyTitle1: "298",
+      bodyContent1: "Total no of Medicines",
+      bodyTitle2: "24",
+      bodyContent2: "Medicine Groups"
+    },
+    {
+      title: "My Pharmacy",
+      title2: "Go to User Management",
+      bodyTitle1: "298",
+      bodyContent1: "Total no of Medicines",
+      bodyTitle2: "24",
+      bodyContent2: "Medicine Groups"
+    },
+    {
+      title: "Customers",
+      title2: "Go to Customers Page",
+      bodyTitle1: "298",
+      bodyContent1: "Total no of Medicines",
+      bodyTitle2: "24",
+      bodyContent2: "Medicine Groups"
     }
   ]
 }
