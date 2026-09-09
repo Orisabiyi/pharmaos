@@ -1,0 +1,68 @@
+<section class="px-16 py-10 2xl:px-32 font-sans">
+  <div class="flex items-center justify-between">
+    <div>
+      <div class="flex items-center gap-2">
+        <h2
+          class="text-2xl font-bold leading-none"
+          [class]="currentUrl() === '/inventory' ? 'text-[#1D242E]' : 'text-[#1D242E80]'"
+        >
+          Inventory
+        </h2>
+
+        @if (currentUrl() != '/inventory') {
+        <ng-icon name="lucideChevronRight" class="text-lg text-gray-600" />
+        } @if (currentUrl() !== '/inventory') { @if (currentUrl() ===
+        '/inventory/list-medicine') {
+        <h3 class="text-2xl font-bold leading-none">
+          List of Medicines ({{ medicineListAndStats.length }})
+        </h3>
+        } @else {
+        <h3 class="text-2xl font-bold leading-none">Drug Name</h3>
+        } }
+      </div>
+      <p class="text-gray-600 text-sm mt-2">
+        List of medicines available for sales
+      </p>
+    </div>
+    <button
+      class="bg-red-500 text-white px-4 cursor-pointer hover:bg-red-600/80 py-3 flex items-center gap-2.5 rounded"
+    >
+      <ng-icon name="lucidePlus" class="text-xl text-white" />
+      <span>Add New Item</span>
+    </button>
+  </div>
+
+  @if (currentUrl() === '/inventory') {
+  <ul class="flex items-center gap-4 mt-8 w-full">
+    <!-- <li></li> -->
+    @for (list of medicineListAndStats; track list.title) {
+    <li class="flex-1 border-2 rounded-lg pt-4" [class]="list.border">
+      <div class="flex flex-col items-center space-y-1">
+        <figure class="w-12 h-12 flex items-center justify-center">
+          <img
+            src="{{ list.cardIcon }}"
+            alt="Card Icon"
+            class="w-full h-full"
+          />
+        </figure>
+
+        <h3 class="text-xl font-semibold">{{ list.title }}</h3>
+        <p class="font-medium text-base">{{ list.subTitle }}</p>
+      </div>
+      <div [class]="list.color" class="mt-4 rounded-b-md">
+        <button
+          class="w-full text-xs font-light py-2.5 flex items-center gap-3 justify-center"
+        >
+          <span>{{ list.titleLable }}</span>
+          <ng-icon
+            name="lucideChevronsUp"
+            class="text-sm text-white rotate-90"
+          />
+        </button>
+      </div>
+    </li>
+    }
+  </ul>
+  }
+  <router-outlet></router-outlet>
+</section>
