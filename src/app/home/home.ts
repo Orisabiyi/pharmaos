@@ -13,6 +13,8 @@ import { InventoryCard } from "../inventory-card/inventory-card";
   templateUrl: "./home.html",
 })
 export class Home {
+  showReportOptions: boolean = false;
+
   inventoryListAndStats: InventoryListAndStats[] = [
     {
       cardIcon: "/card-img-1.svg",
@@ -60,26 +62,32 @@ export class Home {
     {
       title: "Quick Report",
       title2: "Go to Configuration",
-      bodyTitle1: "298",
-      bodyContent1: "Total no of Medicines",
-      bodyTitle2: "24",
-      bodyContent2: "Medicine Groups"
+      bodyTitle1: "70,856",
+      bodyContent1: "Qty of Medicines Sold",
+      bodyTitle2: "5,288",
+      bodyContent2: "Invoices Generated"
     },
     {
       title: "My Pharmacy",
       title2: "Go to User Management",
-      bodyTitle1: "298",
+      bodyTitle1: "04",
       bodyContent1: "Total no of Medicines",
-      bodyTitle2: "24",
-      bodyContent2: "Medicine Groups"
+      bodyTitle2: "05",
+      bodyContent2: "Total no of Users"
     },
     {
       title: "Customers",
       title2: "Go to Customers Page",
-      bodyTitle1: "298",
+      bodyTitle1: "845",
       bodyContent1: "Total no of Medicines",
-      bodyTitle2: "24",
-      bodyContent2: "Medicine Groups"
+      bodyTitle2: "Adalimumab",
+      bodyContent2: "Frequently bought item"
     }
   ]
+
+  // functions
+
+  handleShowReportOptions(displayOption: boolean) {
+    this.showReportOptions = displayOption;
+  }
 }

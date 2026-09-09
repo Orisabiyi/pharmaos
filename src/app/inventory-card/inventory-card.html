@@ -1,19 +1,26 @@
 <div
   class="flex flex-col font-sans border border-gray-300 rounded-lg h-full w-full">
-  <div class="p-4 border-b border-gray-300 flex items-center justify-between">
-    <h2>{{inventoryCard.title}}</h2>
-    <p>{{inventoryCard.title2}}</p>
+  <div
+    class="px-8 py-4 border-b border-gray-300 flex items-center justify-between">
+    <h2 class="font-medium">{{inventoryCard.title}}</h2>
+    <p class="text-xs 2xl:text-sm font-light flex items-center gap-1">
+      <span>{{inventoryCard.title2}}</span>
+      <ng-icon
+        name="phosphorCaretDoubleDownThin"
+        size="1rem"
+        class="-rotate-90 font-bold" />
+    </p>
   </div>
 
-  <div class="flex items-center justify-between p-4">
+  <div class="flex items-center justify-between px-8 py-4">
     <div>
-      <h3>{{inventoryCard.bodyTitle1}}</h3>
-      <p>{{inventoryCard.bodyContent1}}</p>
+      <h3 class="font-bold 2xl:text-xl">{{inventoryCard.bodyTitle1}}</h3>
+      <p class="text-sm">{{inventoryCard.bodyContent1}}</p>
     </div>
 
     <div>
-      <h3>{{inventoryCard.bodyTitle2}}</h3>
-      <p>{{inventoryCard.bodyContent2}}</p>
+      <h3 class="font-bold 2xl:text-xl">{{inventoryCard.bodyTitle2}}</h3>
+      <p class="text-sm">{{inventoryCard.bodyContent2}}</p>
     </div>
   </div>
 </div>
