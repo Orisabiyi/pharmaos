@@ -1,5 +1,6 @@
 export interface DashboardList {
   name: string;
-  icon: string;
+  icon?: string;
   path: string;
+  children?: DashboardList[];
 }

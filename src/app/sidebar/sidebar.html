@@ -1,12 +1,12 @@
 <aside class="w-70 2xl:w-100 h-full">
   <div class="flex items-center justify-center gap-2 p-6 2xl:p-4 bg-[#1D242E]">
-    <figure
-      class="h-10 2xl:w-20 h-10 2xl:h-20 flex items-center justify-center">
+    <figure class="h-10 2xl:w-20 2xl:h-20 flex items-center justify-center">
       <img
         src="/pharma-logo.svg"
         alt="pharma os logo"
         aria-hidden="true"
-        class="w-full h-full object-contain" />
+        class="w-full h-full object-contain"
+      />
     </figure>
     <h1 class="text-xl 2xl:text-3xl text-white font-sans font-semibold">
       Pharma OS
@@ -15,41 +15,78 @@
 
   <section class="bg-[#283342] h-full">
     <div>
-      <div class="flex items-center justify-center gap-4 py-8 px-10 2xl:px-18">
+      <div class="flex items-center justify-center gap-4 py-8 px-6 2xl:px-18">
         <figure class="relative w-10 h-10 2xl:w-20 2xl:h-20">
           <img
             src="/profile-picture.svg"
             alt="profile picture"
             aria-hidden="true"
-            class="block object-cover w-full h-full" />
+            class="block object-cover w-full h-full"
+          />
           <figcaption
-            class="absolute bottom-1 -right-2 w-4 h-4 rounded-full bg-green-500 border-2 border-white"></figcaption>
+            class="absolute bottom-1 -right-2 w-4 h-4 rounded-full bg-green-500 border-2 border-white"
+          ></figcaption>
         </figure>
         <h3
-          class="flex flex-col gap-1.5 text-base text-white leading-none text-sm 2xl:text-lg">
+          class="flex flex-col gap-1.5 lg:text-base text-white leading-none text-sm 2xl:text-lg"
+        >
           <span class="font-normal">Subash</span>
           <span class="font-light text-yellow-500">Super Admin</span>
         </h3>
         <button
           type="button"
           aria-label="More options"
-          class="text-white ml-auto">
-          <ng-icon name="lucideMoreVertical" size="1.5rem" />
+          class="text-white ml-auto"
+        >
+          <ng-icon name="lucideMoreVertical" class="text-xl" />
         </button>
       </div>
     </div>
 
-    <ul class="font-sans font-regular 2xl:text-xl">
-      @for (list of dashboardList; track list.name) {
-      <li>
+    <ul class="w-full">
+      @for (item of dashboardList; track item.name) {
+      <li class="w-full">
+        @if (item.children) {
         <a
-          [routerLink]="list.path"
-          class="flex items-center gap-3 py-3 px-10 2xl:px-18 text-white cursor-pointer hover:bg-[#009099] transition-colors duration-300">
-          <ng-icon name="{{ list.icon }}" size="1.7rem" />
-          <span>{{ list.name }}</span>
+          [routerLink]="item.path"
+          (click)="toggle(item.name); logClick(item.path)"
+          class="flex items-center justify-between py-3 px-6 2xl:px-18 text-white cursor-pointer hover:bg-[#009099] transition-colors duration-200"
+        >
+          <div class="flex items-center gap-3">
+            <ng-icon [name]="item.icon" class="text-xl" />
+            <span>{{ item.name }}</span>
+          </div>
+          <ng-icon
+            name="lucideChevronDown"
+            class="transition-transform duration-300"
+            [class.rotate-180]="openItem === item.name"
+          />
         </a>
-      </li>
 
+        @if (openItem === item.name) {
+        <ul class="bg-[#1D242E]">
+          @for (child of item.children; track child.path) {
+          <li>
+            <a
+              [routerLink]="child.path"
+              (click)="logClick(child.path)"
+              class="flex items-center gap-3 py-3 px-10 2xl:px-20 text-white cursor-pointer hover:bg-[#009099] transition-colors duration-200"
+            >
+              <span>{{ child.name }}</span>
+            </a>
+          </li>
+          }
+        </ul>
+        } } @else {
+        <a
+          [routerLink]="item.path"
+          class="flex items-center gap-3 py-3 px-6 2xl:px-18 text-white cursor-pointer hover:bg-[#009099] transition-colors duration-300"
+        >
+          <ng-icon [name]="item.icon" class="text-xl" />
+          <span>{{ item.name }}</span>
+        </a>
+        }
+      </li>
       }
     </ul>
   </section>
