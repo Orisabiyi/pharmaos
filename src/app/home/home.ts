@@ -1,19 +1,33 @@
-import { Component } from "@angular/core";
+import { Component, signal, WritableSignal } from "@angular/core";
 import { NgIcon, provideIcons } from "@ng-icons/core";
-import { remixArrowDropDownLine } from '@ng-icons/remixicon';
-import { phosphorCaretDoubleDownThin } from '@ng-icons/phosphor-icons/thin';
-import { InventoryCardList, InventoryListAndStats } from "../inventory-list-and-stats";
+import {
+  remixArrowDropDownLine,
+  remixFileExcelLine,
+  remixFilePdfLine,
+} from "@ng-icons/remixicon";
+import { phosphorCaretDoubleDownThin } from "@ng-icons/phosphor-icons/thin";
+import {
+  InventoryCardList,
+  InventoryListAndStats,
+} from "../inventory-list-and-stats";
 import { InventoryCard } from "../inventory-card/inventory-card";
 
 @Component({
   imports: [InventoryCard, NgIcon],
-  providers: [provideIcons({ remixArrowDropDownLine, phosphorCaretDoubleDownThin })],
+  providers: [
+    provideIcons({
+      remixArrowDropDownLine,
+      phosphorCaretDoubleDownThin,
+      remixFileExcelLine,
+      remixFilePdfLine,
+    }),
+  ],
   selector: "app-home",
   styleUrl: "./home.css",
   templateUrl: "./home.html",
 })
 export class Home {
-  showReportOptions: boolean = false;
+  showReportOptions: WritableSignal<boolean> = signal(false);
 
   inventoryListAndStats: InventoryListAndStats[] = [
     {
@@ -22,7 +36,7 @@ export class Home {
       subTitle: "Inventory Status",
       titleLable: "View Detailed Report",
       color: "bg-green-600/30",
-      border: "border-green-600"
+      border: "border-green-600",
     },
     {
       cardIcon: "/card-img-2-money.svg",
@@ -30,7 +44,7 @@ export class Home {
       subTitle: "Medicines Available",
       titleLable: "Visit Inventory",
       color: "bg-yellow-600/30",
-      border: "border-yellow-600"
+      border: "border-yellow-600",
     },
     {
       cardIcon: "/card-img-3-medicine.svg",
@@ -38,7 +52,7 @@ export class Home {
       subTitle: "Medicines Available",
       titleLable: "Visit Inventory",
       color: "bg-blue-600/30",
-      border: "border-blue-600"
+      border: "border-blue-600",
     },
     {
       cardIcon: "/card-img-4-caution.svg",
@@ -46,9 +60,9 @@ export class Home {
       subTitle: "Medicine Storage",
       titleLable: "Resolve Now",
       color: "bg-red-600/30",
-      border: "border-red-600"
-    }
-  ]
+      border: "border-red-600",
+    },
+  ];
 
   inventoryCardList: InventoryCardList[] = [
     {
@@ -57,7 +71,7 @@ export class Home {
       bodyTitle1: "298",
       bodyContent1: "Total no of Medicines",
       bodyTitle2: "24",
-      bodyContent2: "Medicine Groups"
+      bodyContent2: "Medicine Groups",
     },
     {
       title: "Quick Report",
@@ -65,7 +79,7 @@ export class Home {
       bodyTitle1: "70,856",
       bodyContent1: "Qty of Medicines Sold",
       bodyTitle2: "5,288",
-      bodyContent2: "Invoices Generated"
+      bodyContent2: "Invoices Generated",
     },
     {
       title: "My Pharmacy",
@@ -73,7 +87,7 @@ export class Home {
       bodyTitle1: "04",
       bodyContent1: "Total no of Medicines",
       bodyTitle2: "05",
-      bodyContent2: "Total no of Users"
+      bodyContent2: "Total no of Users",
     },
     {
       title: "Customers",
@@ -81,13 +95,13 @@ export class Home {
       bodyTitle1: "845",
       bodyContent1: "Total no of Medicines",
       bodyTitle2: "Adalimumab",
-      bodyContent2: "Frequently bought item"
-    }
-  ]
+      bodyContent2: "Frequently bought item",
+    },
+  ];
 
   // functions
 
-  handleShowReportOptions(displayOption: boolean) {
-    this.showReportOptions = displayOption;
+  handleShowReportOptions() {
+    this.showReportOptions.update((prev) => !prev);
   }
 }
